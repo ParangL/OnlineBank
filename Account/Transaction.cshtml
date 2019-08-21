@@ -1,0 +1,26 @@
+﻿@model BankAppMvc.Models.Transactions
+
+
+    <form style="width: 400px; height:350px; margin: 60px auto 30px; padding: 7px; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.3), 0 3px 2px rgba(0, 0, 0, 0.3), 
+    inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px; background-image: url(https://www.transparenttextures.com/patterns/clean-gray-paper.png); position: relative" asp-controller="Account" asp-action="Transaction" method="post">
+
+        <input type="hidden" asp-for="@Model.AccountId" />
+
+        <p style="color:dimgrey; margin-top:30px; font-family:cursive; font-size:15px" asp-for="@Model.AccountId">Transaction from account: @Model.AccountId</p>
+        <p style="color:dimgrey; margin-top:30px; font-family:cursive; font-size:15px; margin-bottom:-10px" asp-for="@Model.Account">Transaction to account:</p>
+        <input style="text-decoration:none; width: 300px; margin: 15px auto 5px; padding: 3px; outline:0; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.25), 0 3px 7px rgba(0, 0, 0, 0.3), 
+            inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px;background: linear-gradient(#eeefef, #ffffff 10%)" type="text" asp-for="@Model.Account" />
+        <p style="color:dimgrey; margin-top:30px; font-family:cursive; font-size:15px; margin-bottom:-10px" asp-for="@Model.Amount">Amount: </p>
+        <input style="text-decoration:none; width: 300px; margin: 15px auto 5px; padding: 3px; outline:0; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.25), 0 3px 7px rgba(0, 0, 0, 0.3), 
+            inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px;background: linear-gradient(#eeefef, #ffffff 10%); margin-bottom:20px" type="text" asp-for="@Model.Amount" /> <br />
+
+        <button type="submit" style="background-color:darkgray; width:80px; margin-left:4px; font-family:cursive; font-size:14px">Verify</button>
+        <a asp-controller="Account" asp-action="AccountDetails" asp-route-id="@Model.AccountId" style="color:darkgray; font-weight:bold; font-family:cursive; font-size:14px">Go back <--</a>
+    </form>
+
+
+@if (Model != null)
+{
+    <div id="transactionResultDiv">
+    </div>
+}

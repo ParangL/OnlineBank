@@ -1,0 +1,47 @@
+﻿@model BankAppMvc.ViewModels.TransactionHistoryViewModel
+
+
+
+@foreach (var transaction in Model.ListViewModel.Transactions)
+{
+    <tr>
+        <td>
+            @transaction.TransactionId
+        </td>
+        <td>
+            @transaction.Date.ToString("yyMMdd")
+        </td>
+        <td>
+            @transaction.Type
+        </td>
+        <td>
+            @transaction.Operation
+        </td>
+        <td>
+            @transaction.Amount.ToString("C")
+        </td>
+        <td>
+            @transaction.Balance.ToString("C")
+        </td>
+
+    </tr>
+}
+<tr id="buttonRow">
+    <td cispan="3" align="center">
+        @if (Model.ListViewModel.CanShowMore)
+        {
+            <div>
+                <a style="font-family:cursive; color:palevioletred; font-weight:bold; font-size:20px" data-ajax="true" data-ajax-mode="REPLACE-WITH" data-ajax-update="#buttonRow" asp-route-page="@(Model.ListViewModel.PageNumber+1)" asp-route-id="@Model.Account.AccountId"
+                   data-ajax-loading="#spinner"
+                   role="button">Show more</a>
+            </div>
+        }
+        else
+        {
+            <div  style="font-family:cursive; color:palevioletred; font-weight:bold; font-size:20px" role="alert">
+                No more to show
+            </div>
+        }
+    </td>
+
+</tr>

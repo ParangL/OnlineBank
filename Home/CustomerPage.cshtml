@@ -1,0 +1,31 @@
+﻿@model BankAppMvc.ViewModels.CustomerPageViewModel
+
+
+<h2 style="font-family:cursive; margin-left:500px; margin-top:80px">Customer profile</h2>
+
+<div style="width: 350px; margin: 60px auto 30px; padding: 7px; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.3), 0 3px 2px rgba(0, 0, 0, 0.3),
+inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px;background-image: url(https://www.transparenttextures.com/patterns/clean-gray-paper.png); position: relative">
+
+    @foreach (var item in Model.SearchCustomers)
+    {
+        <p style="font-family:cursive; margin-left:20px">Name: @item.Givenname</p>
+        <p style="font-family:cursive; margin-left:20px">Surname: @item.Surname</p>
+        <p style="font-family:cursive; margin-left:20px">Address: @item.Streetaddress</p>
+        <p style="font-family:cursive; margin-left:20px">City: @item.City</p>
+    }
+
+    @foreach (var item in Model.SearchAccounts)
+    {
+        <p style="font-family:cursive; margin-left:20px">Balance: @item.Balance</p>
+
+    }
+
+    <p style="font-family:cursive; margin-left:20px">Total Balance: @Model.TotalBalance</p>
+
+    @foreach (var item in Model.SearchDispositions)
+    {       
+        <a style="font-family:cursive; color: palevioletred; font-weight:bolder; margin-left:20px" asp-controller="Account" asp-action="AccountDetails" asp-route-id="@item.AccountId">AccountId: @item.AccountId</a>
+    }
+
+
+</div>

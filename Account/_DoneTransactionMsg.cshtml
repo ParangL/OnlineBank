@@ -1,0 +1,8 @@
+﻿@model BankAppMvc.ViewModels.TransactionViewModel
+
+<div style="width: 400px; height:200px; margin: 60px auto 30px; padding: 7px; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.3), 0 3px 2px rgba(0, 0, 0, 0.3), 
+    inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px; background-image: url(https://www.transparenttextures.com/patterns/clean-gray-paper.png); position: relative">
+    <p style="color:dimgrey; margin-top:30px; font-family:cursive; font-size:20px">Amount: @Model.Amount</p>
+    <p style="color:dimgrey; margin-top:30px; font-family:cursive; font-size:20px">To account: @Model.Transaction.Account</p>
+    <label style="color:dimgrey; margin-top:30px; font-family:cursive; font-size:20px">From account: @Model.Transaction.AccountId</label>
+</div>

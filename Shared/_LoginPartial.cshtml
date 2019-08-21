@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BankAppMvc.Data
+
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+
+
+@if (signInManager.IsSignedIn(User))
+{
+
+    @if (User.IsInRole("Cashier"))
+    {
+        <a style="height:30px; font-size:17px; font-family:cursive; text-align:center; color:sandybrown; width:10%; margin-left:330px; margin-right:40px"  asp-controller="Home" asp-action="NewCustomer">Create customer</a>
+        <a style="height:30px; font-size:17px; font-family:cursive; text-align:center; color:sandybrown; width:12%; margin-right:40px" class="navLink" asp-controller="Home" asp-action="SearchForm">Search CustomerId</a>
+        <a style="height:30px; font-size:17px; font-family:cursive; text-align:center; color:sandybrown; width:10%; margin-right:300px" class="navLink" asp-controller="Home" asp-action="SearchCustomerByName">Search Customer</a>       
+    }
+
+    else if (User.IsInRole("Admin"))
+    {
+        <a style="text-decoration:none; width:7%; height:30px; font-size:17px; font-family:cursive; text-align:center; color:sandybrown; margin-left:580px; margin-right:430px"  asp-controller="Auth" asp-action="RegisterUser">Create User</a>
+
+
+    }
+
+    <a style="display:inline-block; background-color:lightgray; text-decoration:none; width:7%; height:30px; font-size:15px; font-family:Jazz LET, fantasy; text-align:center; color:darkgoldenrod" asp-controller="Auth" asp-action="LogOff">Logga ut</a>
+
+}
+
+else
+{
+    <a style="display:inline-block; background-color:lightgray; text-decoration:none; width:7%; height:30px; font-size:15px; font-family:Jazz LET, fantasy; text-align:center; color:darkgoldenrod; margin-left:1100px" asp-controller="Auth" asp-action="Login">Logga in</a>
+}

@@ -1,0 +1,87 @@
+﻿@model BankAppMvc.ViewModels.SearchViewModel
+
+<div  style="width: 300px; height:300px; margin: 60px auto 30px; padding: 7px; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.3), 0 3px 2px rgba(0, 0, 0, 0.3), 
+inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px; background-image: url(https://www.transparenttextures.com/patterns/clean-gray-paper.png); position: relative">
+    <div>
+        <h3 style="font-family:cursive; font-size:19px; outline:0; margin-top: 20px; margin-left:70px ">Search Customer</h3>
+
+        <form asp-controller="Home" asp-action="SearchCustomerByName" method="get">
+
+            <div>
+                <p style="font-family:cursive; font-size:15px; outline:0; margin-top: 20px; margin-left:10px ">Do you want to search by Name or City?</p>
+                @if (Model.NameOrCity == "name")
+                {
+                    <input type="radio" id="name" name="NameOrCity" value="name" checked="checked" />
+                    <label for="name">Givenname or Surname</label>
+
+                    <input type="radio" id="city" name="NameOrCity" value="city" />
+                    <label for="city">City</label>
+                }
+
+                else if (Model.NameOrCity == "city")
+                {
+                    <input type="radio" id="name" name="NameOrCity" value="name" />
+                    <label for="name">Givenname or Surname</label>
+
+                    <input type="radio" id="city" name="NameOrCity" value="city" checked="checked" />
+                    <label for="city">City</label>
+                }
+
+                else
+                {
+                    <input type="radio" id="name" name="NameOrCity" value="name" />
+                    <label for="name">Givenname or surname</label>
+
+                    <input type="radio" id="city" name="NameOrCity" value="city" />
+                    <label for="city">City</label>
+                }
+            </div>
+
+            <div>              
+                <input style="text-decoration:none; top:30px; width: 200px; margin: 15px auto 5px; padding: 3px; outline:0; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.25), 0 3px 7px rgba(0, 0, 0, 0.3), 
+            inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px;background: linear-gradient(#eeefef, #ffffff 10%); position: relative" type="text" asp-for="@Model.SearchValue" placeholder="Text..."/>
+                <input type="hidden" asp-for="@Model.page"/>
+            </div>
+
+            <button style="font-family:cursive; outline:0; width: 65px; height: 65px; position: absolute; top:180px; margin-right:65px; right: -25px; padding: 10px; z-index: 2; background: #ffffff;   
+            border-radius: 50%; box-shadow: 0 0 2px rgba(0,0,0,0.1), 0 3px 2px rgba(0,0,0,0.1), inset 0 -3px 2px rgba(0,0,0,0.2)" type="submit">Search</button>
+        </form>
+    </div>
+
+    <div>
+        <table style=" width: 800px; height:300px; margin: 120px auto 30px; margin-left:-230px; padding: 7px; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.3), 0 3px 2px rgba(0, 0, 0, 0.3), 
+        inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25); border-radius: 5px;background: linear-gradient(#eeefef, #ffffff 5%); position: relative">
+            @foreach (var cust in Model.CustomerList)
+            {
+                <tr style="background-color:whitesmoke; font-family:cursive; font-size:14px">
+                    <td>
+                        <a  style="color:black" asp-controller="Home" asp-action="CustomerPage" asp-route-id="@cust.CustomerId">@cust.Givenname @cust.Surname</a>
+                    </td>
+
+                    <td>
+                        CustomerId: @cust.CustomerId
+                    </td>
+
+                    <td>Surname: @cust.Surname</td>
+
+                    <td>Adress: @cust.City</td>
+
+                    <td ><a style="color:darksalmon; margin-right:20px" asp-controller="Home" asp-action="Edit" asp-route-id="@cust.CustomerId">Edit</a></td>
+                    <td><a  style="color:darksalmon; margin-right:20px" asp-controller="Home" asp-action="Remove" asp-route-id="@cust.CustomerId">Delete</a></td>
+                </tr>
+
+            }
+
+        </table>
+    </div>
+
+
+
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        Model.page = i;
+        <a style="color:darksalmon; font-size:25px" asp-controller="Home" asp-action="SearchCustomerByName" asp-route-searchValue="@Model.SearchValue" asp-route-nameOrCity="@Model.NameOrCity" asp-route-page="@Model.page">@Model.page</a>
+    }
+</div>
+
+<p>@ViewData["Message"]</p>

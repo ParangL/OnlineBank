@@ -1,0 +1,14 @@
+﻿<div>
+    <h3 style="font-family:cursive; outline:0; margin-top: 50px; margin-left:520px ">Search Customer</h3>
+    <form asp-controller="Home" asp-action="CustomerPage">
+        <div style="text-decoration:none; width: 200px; top: 50px; margin: 15px auto 5px; padding: 3px; outline:0; position: relative; box-shadow: 0 1px rgba(0, 0, 0, 0.25), 0 3px 7px rgba(0, 0, 0, 0.3), 
+            inset 0 1px rgba(255,255,255,1),inset 0 -3px 2px rgba(0,0,0,0.25);border-radius: 5px;background: linear-gradient(#eeefef, #ffffff 10%); position: relative">           
+            <input type="text" name="CustomerId" id="id" placeholder="CustomerId..." />
+        </div>
+
+        <button style="font-family:cursive; outline:0; width: 65px; height: 65px; position: absolute; top: 200px; right: 500px; padding: 10px; z-index: 2; background: #ffffff;   
+            border-radius: 50%; box-shadow: 0 0 2px rgba(0,0,0,0.1), 0 3px 2px rgba(0,0,0,0.1), inset 0 -3px 2px rgba(0,0,0,0.2)"type="submit">Search</button>
+    </form>
+
+    <p>@ViewData["Message"]</p>
+</div>
